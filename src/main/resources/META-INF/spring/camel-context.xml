@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+
+    <!--jms configuration for this project -->
+    <bean id="jms" class="org.apache.camel.component.jms.JmsComponent">
+        <property name="connectionFactory">
+            <bean class="org.apache.activemq.ActiveMQConnectionFactory">
+                <property name="brokerURL" value="tcp://localhost:41624"/>
+            </bean>
+        </property>
+    </bean>
+
+    <!-- Import file containing the CXF RS client -->
+    <import resource="cxf-services.xml" />
+
+    <!-- camel context -->
+    <camelContext xmlns="http://camel.apache.org/schema/spring">
+        <!-- here is a sample which processes the input files
+             (leaving them in place - see the 'noop' flag)
+             then performs content based routing on the message using XPath -->
+
+        <dataFormats>
+            <json id="jack" library="Jackson" prettyPrint="true" />
+            <json id="unJack" library="Jackson" unmarshalTypeName="com.actinver.monitor.reader.model.ItemLog"/>
+        </dataFormats>
+
+
+
+        <route id="inputMsgs">
+            <from uri="jms:queue:localhost.service.weather-1q-2w"/>
+            <unmarshal ref="unJack"/>
+            <!--<log message="Resultado de la consulta es:${body}"></log>-->
+            <multicast>
+                <to uri="direct:validTimeout"/>
+                <to uri="direct:procesar"/>
+            </multicast>
+        </route>
+        <route>
+            <from uri="timer://timer1?period=61s"/>
+            <marshal ref="jack"/>
+            <to uri="jms:topic:topic.ws.stat"/>
+            <!--<log message="Resultado de la consulta es:${body}"></log>-->
+        </route>
+    </camelContext>
+
+
+</beans>

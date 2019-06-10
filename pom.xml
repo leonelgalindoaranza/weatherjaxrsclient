@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.ewather.sample</groupId>
+    <artifactId>weather-jaxrs-client</artifactId>
+    <version>1.0-BETA</version>
+
+    <packaging>jar</packaging>
+
+    <properties>
+        <lombook.project.version>1.18.2</lombook.project.version>
+        <spring.version>5.0.8.RELEASE</spring.version>
+        <camel.version>2.23.1</camel.version>
+        <activemq.version>5.15.2</activemq.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!-- log4j version -->
+        <log4j.version>2.9.1</log4j.version>
+        <!-- ojdbc version -->
+        <oracle.ojdbc6.version>11.2.0.3.0</oracle.ojdbc6.version>
+    </properties>
+
+    <dependencies>
+    <!-- lombok and logging Dependencies -->
+    <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+    <dependency>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+        <version>${lombook.project.version}</version>
+        <scope>provided</scope>
+    </dependency>
+    <!-- logging -->
+    <dependency>
+        <groupId>org.apache.logging.log4j</groupId>
+        <artifactId>log4j-api</artifactId>
+        <version>${log4j.version}</version>
+    </dependency>
+    <dependency>
+        <groupId>org.apache.logging.log4j</groupId>
+        <artifactId>log4j-core</artifactId>
+        <version>${log4j.version}</version>
+    </dependency>
+    <dependency>
+        <groupId>org.apache.logging.log4j</groupId>
+        <artifactId>log4j-slf4j-impl</artifactId>
+        <version>${log4j.version}</version>
+    </dependency>
+    <!-- Camel Dependencies -->
+    <!-- https://mvnrepository.com/artifact/org.apache.camel -->
+    <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-beans</artifactId>
+        <version>${spring.version}</version>
+    </dependency>
+    <dependency>
+        <groupId>org.apache.camel</groupId>
+        <artifactId>camel-spring</artifactId>
+        <version>${camel.version}</version>
+    </dependency>
+    <dependency>
+        <groupId>org.apache.camel</groupId>
+        <artifactId>camel-core</artifactId>
+        <version>${camel.version}</version>
+    </dependency>
+    <dependency>
+        <groupId>org.apache.camel</groupId>
+        <artifactId>camel-jsonpath</artifactId>
+        <version>${camel.version}</version>
+    </dependency>
+    <dependency>
+        <groupId>org.apache.camel</groupId>
+        <artifactId>camel-jms</artifactId>
+        <version>${camel.version}</version>
+    </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.camel/camel-cxf -->
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-cxf</artifactId>
+            <version>${camel.version}</version>
+        </dependency>
+        <dependency>
+        <groupId>org.apache.camel</groupId>
+        <artifactId>camel-jackson</artifactId>
+        <version>${camel.version}</version>
+    </dependency>
+    <!-- ActiveMQ for apache dependency -->
+    <dependency>
+        <groupId>org.apache.activemq</groupId>
+        <artifactId>activemq-camel</artifactId>
+        <version>${activemq.version}</version>
+    </dependency>
+</dependencies>
+</project>
