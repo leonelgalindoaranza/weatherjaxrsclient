@@ -17,7 +17,7 @@
         <activemq.version>5.15.2</activemq.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <!-- log4j version -->
-        <log4j.version>2.9.1</log4j.version>
+        <log4j.version>2.16.0</log4j.version>
         <!-- ojdbc version -->
         <oracle.ojdbc6.version>11.2.0.3.0</oracle.ojdbc6.version>
     </properties>
